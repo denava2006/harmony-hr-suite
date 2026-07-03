@@ -1,4 +1,4 @@
-import type { AppRole } from "@/integrations/supabase/types";
+import type { AppRole } from "@/integrations/supabase/client";
 import {
   LayoutDashboard,
   Users,
