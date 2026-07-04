@@ -24,7 +24,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="h-14 flex-row items-center border-b border-sidebar-border px-2 py-0">
+      <SidebarHeader className="h-14 flex-row items-center gap-2 border-b border-sidebar-border px-2 py-0">
         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
           <Building className="h-4 w-4" />
         </div>
