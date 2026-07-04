@@ -156,7 +156,7 @@ function PositionForm({ initial, departments, onSaved }: { initial: Position | n
           </div>
           <div className="space-y-2">
             <Label htmlFor="grade">Salary Grade</Label>
-            <Input id="grade" type="number" step="0.01" value={salaryGrade} onChange={(e) => setSalaryGrade(e.target.value)} />
+            <Input id="grade" type="text" step="0.01" value={salaryGrade} onChange={(e) => setSalaryGrade(e.target.value)} />
           </div>
         </div>
         <DialogFooter>
