@@ -1,3 +1,8 @@
+// Supabase browser client.
+// Uses the PUBLIC publishable key — safe to ship to the browser because Row
+// Level Security (RLS) policies in the database enforce actual access rules.
+// Never put the service role key here. Session is persisted in localStorage
+// so the user stays signed in across reloads.
 import { createClient } from "@supabase/supabase-js";
 
 // Public keys — safe to ship to the browser.
