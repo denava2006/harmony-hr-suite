@@ -35,6 +35,7 @@ export const NAV_ITEMS: NavItem[] = [
   { title: "SariSync", to: "/integrations", icon: Link2, roles: ["owner", "hr_staff"] },
 ];
 
+// Human-readable labels for each role, used across sidebar, dashboard, and badges.
 export const ROLE_LABELS: Record<AppRole, string> = {
   owner: "Owner",
   hr_staff: "HR Staff",
@@ -42,3 +43,12 @@ export const ROLE_LABELS: Record<AppRole, string> = {
   employee: "Employee",
   cashier: "Cashier",
 };
+
+// Priority order (highest first). Used to pick the "primary" role to display
+// when a user has multiple roles assigned (e.g. Owner + Employee).
+export const ROLE_PRIORITY: AppRole[] = ["owner", "hr_staff", "manager", "cashier", "employee"];
+
+// Returns the highest-priority role from a list, or undefined if empty.
+export function primaryRole(roles: AppRole[]): AppRole | undefined {
+  return ROLE_PRIORITY.find((r) => roles.includes(r));
+}
