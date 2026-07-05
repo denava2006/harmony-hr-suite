@@ -1,3 +1,9 @@
+// AuthProvider + useAuth hook.
+// Central source of truth for the signed-in Supabase session and the roles
+// assigned to the user in the `user_roles` table. Every page reads from here
+// via `useAuth()` — never call `supabase.auth.getSession()` directly in a UI
+// component. `hasRole` / `hasAnyRole` are the RBAC helpers used by the sidebar
+// and page-level "canManage" checks.
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
@@ -21,6 +27,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [roles, setRoles] = useState<AppRole[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch the role rows for the given auth user id and store the flat list
+  // of role strings in state. Called after sign-in and on auth state changes.
   const loadRoles = async (userId: string | undefined) => {
     if (!userId) {
       setRoles([]);
