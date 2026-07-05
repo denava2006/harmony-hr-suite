@@ -1,3 +1,6 @@
+// Public /auth route — sign-in and sign-up in one card with a tabs switcher.
+// If a session already exists, `beforeLoad` bounces the user to /dashboard so
+// they never see the form after logging in.
 import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
