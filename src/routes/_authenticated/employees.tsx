@@ -1,3 +1,7 @@
+// Employees module — main HR record for each person.
+// Features: search, create/edit/delete, department + position assignment,
+// employment status, and a POS/SariSync toggle (`pos_enabled`) that flags
+// which staff sync to the sari-sari point-of-sale system later.
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
