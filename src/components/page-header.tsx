@@ -1,3 +1,7 @@
+// Reusable page-header block used by every module page.
+// - `title`       : bold H1 shown at the top.
+// - `description` : optional muted subtitle.
+// - `actions`     : right-side slot (e.g. "New" button, role badge).
 import type { ReactNode } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
