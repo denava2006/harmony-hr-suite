@@ -1,3 +1,9 @@
+// AuthProvider + useAuth hook.
+// Central source of truth for the signed-in Supabase session and the roles
+// assigned to the user in the `user_roles` table. Every page reads from here
+// via `useAuth()` — never call `supabase.auth.getSession()` directly in a UI
+// component. `hasRole` / `hasAnyRole` are the RBAC helpers used by the sidebar
+// and page-level "canManage" checks.
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
