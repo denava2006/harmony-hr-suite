@@ -1,3 +1,6 @@
+// Departments module — list + create/edit/delete organizational units.
+// Everyone signed-in can view the list; only Owner and HR Staff see the
+// action buttons (guarded by `canManage` via useAuth).
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
