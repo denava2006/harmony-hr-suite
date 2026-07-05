@@ -65,7 +65,7 @@ export function AppSidebar() {
           <div className="flex flex-col group-data-[collapsible=icon]:hidden">
             <span className="truncate text-sm font-medium">{user?.email}</span>
             <span className="text-xs text-muted-foreground">
-              {primaryRole ? ROLE_LABELS[primaryRole] : "No role"}
+              {displayRole ? ROLE_LABELS[displayRole] : "No role"}
             </span>
           </div>
           <Button variant="ghost" size="sm" onClick={() => void signOut()} className="justify-start">
