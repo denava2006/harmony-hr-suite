@@ -1,3 +1,5 @@
+// Positions module — job titles, level, and salary grade, optionally linked
+// to a department. Owner / HR Staff can manage; other roles see read-only.
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
