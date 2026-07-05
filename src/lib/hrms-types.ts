@@ -1,3 +1,8 @@
+// TypeScript row shapes that mirror the tables created in
+// db/migrations/0001_hrms_core.sql. Kept in sync by hand — update both files
+// together when you add/rename a column.
+
+// A department = an organizational unit (e.g. "Engineering", "HR").
 export interface Department {
   id: string;
   code: string;
