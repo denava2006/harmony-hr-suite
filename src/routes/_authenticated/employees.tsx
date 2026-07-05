@@ -226,7 +226,7 @@ function EmployeeForm({ initial, departments, positions, onSaved }: { initial: E
           </div>
           <div className="space-y-2">
             <Label htmlFor="phone">Phone</Label>
-            <Input id="phone" value={form.phone ?? ""} onChange={(e) => set("phone", e.target.value)} />
+            <Input id="phone" type="tel" minLength={11} maxLength={11} value={form.phone ?? ""} placeholder="09XXXXXXXXX" onChange={(e) => set("phone", e.target.value)} />
           </div>
           <div className="space-y-2">
             <Label>Gender</Label>
