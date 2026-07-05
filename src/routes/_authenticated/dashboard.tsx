@@ -1,15 +1,20 @@
+// Dashboard landing page for signed-in users. Shows a welcome header with the
+// user's highest-priority role (Owner beats Employee), a warning card if no
+// role is assigned yet, and a grid of placeholder stat cards. Real metrics
+// will be wired in a later phase.
 import { createFileRoute } from "@tanstack/react-router";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { PageHeader } from "@/components/page-header";
 import { useAuth } from "@/hooks/use-auth";
-import { ROLE_LABELS } from "@/lib/nav-config";
+import { ROLE_LABELS, primaryRole } from "@/lib/nav-config";
 import { Users, Clock, CalendarDays, Wallet, Building2, Target } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   component: Dashboard,
 });
 
+// Static placeholder KPI cards. Values are "—" until we wire real queries.
 const STAT_CARDS = [
   { label: "Employees", value: "—", icon: Users, hint: "Total active" },
   { label: "Departments", value: "—", icon: Building2, hint: "Organizational units" },
@@ -21,6 +26,9 @@ const STAT_CARDS = [
 
 function Dashboard() {
   const { user, roles } = useAuth();
+  // Show only the highest-priority role so promoted accounts don't display
+  // both "Employee" and "Owner" side by side.
+  const displayRole = primaryRole(roles);
 
   return (
     <div className="space-y-6">
@@ -28,15 +36,14 @@ function Dashboard() {
         title={`Welcome, ${user?.email?.split("@")[0] ?? "there"}`}
         description="Overview of your HR operations."
         actions={
-          <div className="flex flex-wrap gap-1">
-            {roles.length === 0 ? (
-              <Badge variant="secondary">No role assigned</Badge>
-            ) : (
-              roles.map((r) => <Badge key={r}>{ROLE_LABELS[r]}</Badge>)
-            )}
-          </div>
+          displayRole ? (
+            <Badge>{ROLE_LABELS[displayRole]}</Badge>
+          ) : (
+            <Badge variant="secondary">No role assigned</Badge>
+          )
         }
       />
+
 
       {roles.length === 0 && (
         <Card className="border-amber-500/40 bg-amber-50/50 dark:bg-amber-950/20">
