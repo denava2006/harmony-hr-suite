@@ -11,16 +11,19 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { NAV_ITEMS, ROLE_LABELS } from "@/lib/nav-config";
+import { NAV_ITEMS, ROLE_LABELS, primaryRole } from "@/lib/nav-config";
 import { useAuth } from "@/hooks/use-auth";
 import { LogOut, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Left-hand navigation. Modules are filtered by the roles the signed-in user
+// holds, and the footer shows the user's highest-priority role (Owner beats
+// Employee, etc.) so a promoted account no longer displays "Employee".
 export function AppSidebar() {
   const { roles, user, signOut } = useAuth();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const items = NAV_ITEMS.filter((item) => item.roles.some((r) => roles.includes(r)));
-  const primaryRole = roles[0];
+  const displayRole = primaryRole(roles);
 
   return (
     <Sidebar collapsible="icon">
