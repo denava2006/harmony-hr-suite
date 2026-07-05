@@ -27,6 +27,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [roles, setRoles] = useState<AppRole[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch the role rows for the given auth user id and store the flat list
+  // of role strings in state. Called after sign-in and on auth state changes.
   const loadRoles = async (userId: string | undefined) => {
     if (!userId) {
       setRoles([]);
