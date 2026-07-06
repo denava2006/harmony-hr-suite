@@ -68,14 +68,14 @@ function AuthPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted/30 px-4">
-      <Card className="w-full max-w-md">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-secondary/40 to-accent/20 px-4">
+      <Card className="w-full max-w-md border-border/60 shadow-xl shadow-primary/5">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <Building className="h-6 w-6" />
+          <div className="mx-auto mb-2 flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-white ring-1 ring-border">
+            <img src={logoAsset.url} alt="Harmony Suite" className="h-14 w-14 object-contain" />
           </div>
-          <CardTitle className="text-2xl">HRMS</CardTitle>
-          <CardDescription>Human Resource Management System</CardDescription>
+          <CardTitle className="text-2xl">Harmony Suite</CardTitle>
+          <CardDescription>HRMS — People first, technology second.</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs value={mode} onValueChange={(v) => setMode(v as "signin" | "signup")}>
