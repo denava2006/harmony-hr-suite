@@ -13,8 +13,9 @@ import {
 } from "@/components/ui/sidebar";
 import { NAV_ITEMS, ROLE_LABELS, primaryRole } from "@/lib/nav-config";
 import { useAuth } from "@/hooks/use-auth";
-import { LogOut, Building } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoAsset from "@/assets/harmony-suite-logo.png.asset.json";
 
 // Left-hand navigation. Modules are filtered by the roles the signed-in user
 // holds, and the footer shows the user's highest-priority role (Owner beats
