@@ -25,7 +25,7 @@ const STAT_CARDS = [
 ];
 
 function Dashboard() {
-  const { user, roles } = useAuth();
+  const { user, roles, rolesLoading } = useAuth();
   // Show only the highest-priority role so promoted accounts don't display
   // both "Employee" and "Owner" side by side.
   const displayRole = primaryRole(roles);
