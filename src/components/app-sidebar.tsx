@@ -21,9 +21,15 @@ import { Button } from "@/components/ui/button";
 // Employee, etc.) so a promoted account no longer displays "Employee".
 export function AppSidebar() {
   const { roles, user, signOut } = useAuth();
+  const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const items = NAV_ITEMS.filter((item) => item.roles.some((r) => roles.includes(r)));
   const displayRole = primaryRole(roles);
+
+  const handleSignOut = async () => {
+    await signOut();
+    await navigate({ to: "/auth", replace: true });
+  };
 
   return (
     <Sidebar collapsible="icon">
