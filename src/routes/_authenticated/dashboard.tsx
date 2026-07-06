@@ -25,7 +25,7 @@ const STAT_CARDS = [
 ];
 
 function Dashboard() {
-  const { user, roles } = useAuth();
+  const { user, roles, rolesLoading } = useAuth();
   // Show only the highest-priority role so promoted accounts don't display
   // both "Employee" and "Owner" side by side.
   const displayRole = primaryRole(roles);
@@ -45,7 +45,7 @@ function Dashboard() {
       />
 
 
-      {roles.length === 0 && (
+      {!rolesLoading && roles.length === 0 && (
         <Card className="border-amber-500/40 bg-amber-50/50 dark:bg-amber-950/20">
           <CardHeader>
             <CardTitle className="text-base text-amber-900 dark:text-amber-200">Account pending role assignment</CardTitle>

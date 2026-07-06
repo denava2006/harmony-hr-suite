@@ -13,8 +13,9 @@ import {
 } from "@/components/ui/sidebar";
 import { NAV_ITEMS, ROLE_LABELS, primaryRole } from "@/lib/nav-config";
 import { useAuth } from "@/hooks/use-auth";
-import { LogOut, Building } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoAsset from "@/assets/harmony-suite-logo.png.asset.json";
 
 // Left-hand navigation. Modules are filtered by the roles the signed-in user
 // holds, and the footer shows the user's highest-priority role (Owner beats
@@ -33,13 +34,13 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="h-14 flex-row items-center gap-2 border-b border-sidebar-border px-2 py-0">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
-          <Building className="h-4 w-4" />
+      <SidebarHeader className="h-16 flex-row items-center gap-2 border-b border-sidebar-border px-2 py-0">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white ring-1 ring-sidebar-border">
+          <img src={logoAsset.url} alt="Harmony Suite" className="h-9 w-9 object-contain" />
         </div>
         <div className="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
-          <span className="text-sm font-semibold">HRMS</span>
-          <span className="text-xs text-muted-foreground">Human Resources</span>
+          <span className="text-sm font-semibold tracking-tight">Harmony Suite</span>
+          <span className="text-[11px] uppercase tracking-wider text-muted-foreground">HRMS System</span>
         </div>
       </SidebarHeader>
 
