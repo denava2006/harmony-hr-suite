@@ -14,6 +14,10 @@ interface AuthContextValue {
   user: User | null;
   roles: AppRole[];
   loading: boolean;
+  // True while roles are being fetched for the current session. UI that
+  // depends on role presence (e.g. "no role assigned" warning) must gate on
+  // this to avoid a brief flash right after sign-in before roles load.
+  rolesLoading: boolean;
   signOut: () => Promise<void>;
   hasRole: (role: AppRole) => boolean;
   hasAnyRole: (roles: AppRole[]) => boolean;
