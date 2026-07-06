@@ -30,22 +30,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [roles, setRoles] = useState<AppRole[]>([]);
   const [loading, setLoading] = useState(true);
+  const [rolesLoading, setRolesLoading] = useState(true);
 
   // Fetch the role rows for the given auth user id and store the flat list
   // of role strings in state. Called after sign-in and on auth state changes.
   const loadRoles = async (userId: string | undefined) => {
     if (!userId) {
       setRoles([]);
+      setRolesLoading(false);
       return;
     }
+    setRolesLoading(true);
     const { data } = await supabase.from("user_roles").select("role").eq("user_id", userId);
     setRoles(((data ?? []) as Array<{ role: AppRole }>).map((r) => r.role));
+    setRolesLoading(false);
   };
 
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange((_event, s) => {
       setSession(s);
-      // Defer supabase call to avoid deadlock inside the callback.
+      // Mark roles as loading synchronously so UI doesn't flash the empty
+      // state between sign-in and the role fetch completing.
+      if (s?.user.id) setRolesLoading(true);
       setTimeout(() => {
         void loadRoles(s?.user.id);
       }, 0);
@@ -64,6 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     user: session?.user ?? null,
     roles,
     loading,
+    rolesLoading,
     signOut: async () => {
       await supabase.auth.signOut();
       setRoles([]);
