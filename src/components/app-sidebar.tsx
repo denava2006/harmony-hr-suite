@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
 import {
   Sidebar,
   SidebarContent,
@@ -21,9 +21,15 @@ import { Button } from "@/components/ui/button";
 // Employee, etc.) so a promoted account no longer displays "Employee".
 export function AppSidebar() {
   const { roles, user, signOut } = useAuth();
+  const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const items = NAV_ITEMS.filter((item) => item.roles.some((r) => roles.includes(r)));
   const displayRole = primaryRole(roles);
+
+  const handleSignOut = async () => {
+    await signOut();
+    await navigate({ to: "/auth", replace: true });
+  };
 
   return (
     <Sidebar collapsible="icon">
@@ -68,7 +74,7 @@ export function AppSidebar() {
               {displayRole ? ROLE_LABELS[displayRole] : "No role"}
             </span>
           </div>
-          <Button variant="ghost" size="sm" onClick={() => void signOut()} className="justify-start">
+          <Button variant="ghost" size="sm" onClick={() => void handleSignOut()} className="justify-start">
             <LogOut className="h-4 w-4" />
             <span className="group-data-[collapsible=icon]:hidden">Sign out</span>
           </Button>
