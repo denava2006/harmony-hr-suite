@@ -74,7 +74,7 @@ export function AppSidebar() {
               {displayRole ? ROLE_LABELS[displayRole] : "No role"}
             </span>
           </div>
-          <Button variant="ghost" size="sm" onClick={() => void signOut()} className="justify-start">
+          <Button variant="ghost" size="sm" onClick={() => void handleSignOut()} className="justify-start">
             <LogOut className="h-4 w-4" />
             <span className="group-data-[collapsible=icon]:hidden">Sign out</span>
           </Button>
